@@ -9,17 +9,14 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "assignments")
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Assignment {
+@Getter
+@Setter
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @OneToOne
-    private Test test;
-    private Boolean status;
-    private Integer rating;
+    private User user;
 }
