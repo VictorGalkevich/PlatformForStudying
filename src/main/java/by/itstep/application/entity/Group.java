@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@ToString
 @Getter
 @Setter
 @Table(name = "groups")
@@ -17,7 +18,6 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "groups_students",

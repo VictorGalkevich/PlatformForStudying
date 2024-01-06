@@ -4,19 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03f381cb-63ad-40d5-861e-95e13f494173" name="Changes" comment="initial commit">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="03f381cb-63ad-40d5-861e-95e13f494173" name="Changes" comment="first version project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/ApplicationRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/ApplicationRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Assignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Group.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/AssignmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/AssignmentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/GroupRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/TeacherRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/QuestionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/QuestionRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/TestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/TeacherService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +38,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -76,6 +82,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;f848174e335f1310517cd8c99c4f8ae0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -113,7 +120,10 @@
       <workItem from="1704307973383" duration="7484000" />
       <workItem from="1704355871044" duration="13398000" />
       <workItem from="1704389166957" duration="10483000" />
-      <workItem from="1704436098995" duration="18241000" />
+      <workItem from="1704436098995" duration="20189000" />
+      <workItem from="1704477556816" duration="68000" />
+      <workItem from="1704484096465" duration="9443000" />
+      <workItem from="1704528862203" duration="15656000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -123,7 +133,14 @@
       <option name="project" value="LOCAL" />
       <updated>1703703589829</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="first version project">
+      <created>1704456055812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1704456055812</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -154,6 +171,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="first version project" />
+    <option name="LAST_COMMIT_MESSAGE" value="first version project" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

@@ -1,68 +1,64 @@
 package by.itstep.application.service.user;
 
 import by.itstep.application.entity.*;
-import by.itstep.application.repository.GroupRepository;
-import by.itstep.application.repository.StudentRepository;
-import by.itstep.application.repository.TeacherRepository;
+import by.itstep.application.entity.type.StatusType;
+import by.itstep.application.repository.*;
 import by.itstep.application.util.ApiResponse;
+import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class TeacherService {
+    private final GetEntity getEntity;
     private final TeacherRepository teacherRepository;
-    private final GroupRepository groupRepository;
     private final StudentRepository studentRepository;
+    private final TestRepository testRepository;
+    private final AssignmentRepository assignmentRepository;
+
     public void registerTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
     }
 
-    public ApiResponse<String> createGroup(User user, String groupName) {
-        var response = new ApiResponse<String>();
-        var optionalGroup = groupRepository.findByName(groupName);
-        if (optionalGroup.isPresent()) {
-            response = ApiResponse.error("this is name for group already exist, " +
-                                         "think about another name, for example " + groupName + " + subject name");
-        } else {
-            var group = new Group();
-            var teacher = teacherRepository.findByUser(user).get();
-            group.setName(groupName);
-            teacher.addGroupForTeacher(group);
-            groupRepository.save(group);
-            teacherRepository.save(teacher);
-            response = ApiResponse.success("successful add group");
+    public ApiResponse<String> assignTestForStudent(User user, Integer idTest, String groupName) {
+
+        try {
+            getEntity.getTeacherForUser(user);
+        } catch (Exception e) {
+            return ApiResponse.error("sorry you are not a teacher");
         }
-        return response;
+
+        var group = getEntity.getGroupByName(groupName);
+        var test = getEntity.getTestById(idTest);
+
+        List<Student> students = group.getStudents();
+        students.forEach(student -> student.setTest(test));
+        studentRepository.saveAll(students);
+
+        testRepository.save(test);
+
+        return ApiResponse.success("Test added for students in the group " + groupName);
     }
-    public ApiResponse<String> addStudentForGroup(User user,
-                                                  Integer idStudent,
-                                                  String groupName) {
-        var response = new ApiResponse<String>();
-        var teacher = teacherRepository.findByUser(user).get();
-        var optionalGroup = groupRepository.findByName(groupName);
-        if (optionalGroup.isEmpty()) {
-            response = ApiResponse.error("please create the group with name: " + groupName);
-        } else if (teacher.getGroups().isEmpty()) {
-            response = ApiResponse.error("this is teacher hasn't groups");
-        } else {
-            var student = studentRepository.findById(idStudent).get();
-            var group = optionalGroup.get();
-            if (!teacher.getGroups().contains(group)){
-                return ApiResponse.error("no such groups for this is teacher");
-            }
-            if (group.getStudents().contains(student)) {
-                return ApiResponse.error("this is student already add in the group");
-            }
-            group.addStudentsForGroup(student);
-            studentRepository.save(student);
-            groupRepository.save(group);
-            teacherRepository.save(teacher);
-            response = ApiResponse.success("success add student for the group");
+
+    public ApiResponse<String> sendResultTest(User user, Integer rating, Integer idAssigment) {
+        var teacher = getEntity.getTeacherForUser(user);
+        var assignment = getEntity.getAssignmentById(idAssigment);
+        if (!assignment.getTest().getCreateBy().equals(teacher.getUser().getFirstname() + " " +
+                                                       teacher.getUser().getLastname())) {
+            return ApiResponse.error("sorry, but you can't check this test");
         }
-        return response;
+        if (assignment.getStatus() == StatusType.CHECKED) {
+            return ApiResponse.error("this assigment was check");
+        }
+        assignment.setStatus(StatusType.CHECKED);
+        assignment.setRating(rating);
+        assignmentRepository.save(assignment);
+        return ApiResponse.success("result was send");
     }
+
 
 }
 

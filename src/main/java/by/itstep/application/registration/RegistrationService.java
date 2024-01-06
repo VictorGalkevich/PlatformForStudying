@@ -27,7 +27,6 @@ public class RegistrationService {
             userService.singUpTeacherOrStudent(request);
             response = ApiResponse.success("Registration successful");
         }
-
         return response;
     }
 

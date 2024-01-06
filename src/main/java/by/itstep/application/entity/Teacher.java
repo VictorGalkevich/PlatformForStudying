@@ -3,7 +3,6 @@ package by.itstep.application.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "teachers")
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +28,11 @@ public class Teacher {
     @JoinTable(name = "teacher_groups", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
     private List<Group> groups = new ArrayList<>();
 
-    public void addGroupForTeacher(Group group){
+    public void addGroupForTeacher(Group group) {
         groups.add(group);
     }
 
+    public void addTestForTeacher(Test test) {
+        tests.add(test);
+    }
 }

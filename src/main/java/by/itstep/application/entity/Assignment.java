@@ -1,13 +1,11 @@
 package by.itstep.application.entity;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import by.itstep.application.entity.type.StatusType;
+import lombok.*;
 
 import javax.persistence.*;
 
+@ToString
 @Entity
 @Table(name = "assignments")
 @Getter
@@ -20,6 +18,8 @@ public class Assignment {
     private Integer id;
     @OneToOne
     private Test test;
-    private Boolean status;
+    @Enumerated(value = EnumType.STRING)
+    private StatusType status;
     private Integer rating;
+
 }
