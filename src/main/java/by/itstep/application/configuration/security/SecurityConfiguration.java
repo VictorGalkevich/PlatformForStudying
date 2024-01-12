@@ -1,14 +1,15 @@
 package by.itstep.application.configuration.security;
 
+import by.itstep.application.entity.type.Role;
 import by.itstep.application.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,24 +23,29 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder);
+    public void configure(WebSecurity web){
+        web.ignoring().antMatchers("/static/**", "/css/**");
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/api/v*/registration/**").permitAll()
-                .antMatchers("/api/v1/login").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/api/v1/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .authorizeHttpRequests(
+                        urlConfig -> urlConfig
+                                .antMatchers("/login", "/registration", "/users/registration").permitAll()
+                                .antMatchers("/api/v*/registration/**", "/api/v1/login").permitAll()
+                                .antMatchers("/group/create", "/test/create").hasAuthority(Role.ADMIN.getAuthority())
+                                .antMatchers("/moderator/**").hasAuthority(Role.MODERATOR.getAuthority())
+                                .anyRequest().authenticated()
+                )
+                .logout(logout ->
+                        logout.logoutUrl("/logout")
+                                .logoutSuccessUrl("/login")
+                                .deleteCookies("JSESSIONID"))
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/users"))
+                .csrf().disable();
     }
 
     @Bean

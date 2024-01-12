@@ -11,6 +11,7 @@ import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +29,7 @@ public class TestService {
     private final TeacherRepository teacherRepository;
     private final GetEntity getEntity;
 
+   // @PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     @Transactional
     public ApiResponse<String> createTest(User user, final List<Question> questions) {
         var teacher = getEntity.getTeacherForUser(user);
@@ -86,6 +88,7 @@ public class TestService {
         }
     }
 
+  //  @PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     public ApiResponse<String> setTimingsForTest(TestTimeRequest testRequest) {
         try {
             Optional<Test> optionalTest = testRepository.findByIdWithQuestions(testRequest.getIdTest());
@@ -122,6 +125,9 @@ public class TestService {
             student.setTest(null);
 
             studentRepository.save(student);
+
+            // ToDo request for user answer
+            // ToDo assigment save() -- duplicate
 
             return ApiResponse.success("Test passed");
         } catch (Exception e) {

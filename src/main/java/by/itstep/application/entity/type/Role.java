@@ -3,7 +3,9 @@ package by.itstep.application.entity.type;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Role implements GrantedAuthority {
-    ADMIN, USER;
+    ADMIN,
+    MODERATOR,
+    USER;
     @Override
     public String getAuthority() {
         return name();

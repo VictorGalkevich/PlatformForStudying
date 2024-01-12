@@ -10,6 +10,7 @@ import by.itstep.application.repository.TeacherRepository;
 import by.itstep.application.util.ApiResponse;
 import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class GroupService {
     private final GetEntity getEntity;
     private final StudentRepository studentRepository;
 
+    //@PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     public ApiResponse<String> createGroup(User user, String groupName) {
         ApiResponse<String> response;
         if (groupRepository.findByName(groupName).isPresent()) {
@@ -44,7 +46,7 @@ public class GroupService {
 
         return response;
     }
-
+    //@PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     public ApiResponse<String> addStudentForGroup(User user, Integer idStudent, String groupName) {
         try {
             Teacher teacher = getEntity.getTeacherForUser(user);
