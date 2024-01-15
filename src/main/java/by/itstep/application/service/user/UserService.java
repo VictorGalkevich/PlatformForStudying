@@ -1,18 +1,26 @@
 package by.itstep.application.service.user;
 
+import by.itstep.application.dto.UserFilter;
+import by.itstep.application.dto.UserReadDto;
 import by.itstep.application.entity.Student;
 import by.itstep.application.entity.Teacher;
 import by.itstep.application.entity.User;
 import by.itstep.application.entity.type.Role;
 import by.itstep.application.entity.type.UserType;
+import by.itstep.application.mapper.UserReadMapper;
+import by.itstep.application.querydsl.QPredicates;
 import by.itstep.application.registration.RegistrationRequest;
 import by.itstep.application.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static by.itstep.application.entity.QUser.user;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +31,9 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final StudentService studentService;
     private final TeacherService teacherService;
+    private final UserReadMapper userReadMapper;
 
-    public void signUpUser(User user) {
+    private void signUpUser(User user) {
         boolean userExists = userRepository.findByUsername(user.getUsername()).isPresent();
 
         if (userExists) {
@@ -68,5 +77,15 @@ public class UserService implements UserDetailsService {
         newUser.setPassword(request.getPassword());
         //newUser.setRole(request.getRole());
         return newUser;
+    }
+
+    public Page<UserReadDto> findAll(UserFilter filter, Pageable pageable) {
+        var predicate = QPredicates.builder()
+                .add(filter.username(), user.username::containsIgnoreCase)
+                .build();
+
+        return userRepository.findAll(predicate, pageable)
+                .map(userReadMapper::map);
+
     }
 }

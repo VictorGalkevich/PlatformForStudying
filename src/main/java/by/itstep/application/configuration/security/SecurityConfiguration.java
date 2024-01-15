@@ -32,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeHttpRequests(
                         urlConfig -> urlConfig
+                                .antMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
                                 .antMatchers("/login", "/registration", "/users/registration").permitAll()
                                 .antMatchers("/api/v*/registration/**", "/api/v1/login").permitAll()
                                 .antMatchers("/group/create", "/test/create").hasAuthority(Role.ADMIN.getAuthority())
@@ -45,7 +46,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin(login -> login
                         .loginPage("/login")
                         .defaultSuccessUrl("/users"))
-                .csrf().disable();
+                /*.oauth2Login(config -> config
+                        //.loginPage("/login")
+                        .defaultSuccessUrl("/users"))*/;
     }
 
     @Bean

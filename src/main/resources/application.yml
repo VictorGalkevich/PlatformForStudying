@@ -11,7 +11,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/postgres
     username: postgres
-    password: 1234
+    password: root1234
     driver-class-name: org.postgresql.Driver
   jpa:
     open-in-view: false
@@ -23,3 +23,11 @@ spring:
         format_sql: true
         ## connection: autocommit=false
     show-sql: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 293072914342-v715in0p7c8f1vqca6cgk3linmcs6sg7.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: http://localhost:8081/login/oauth2/code/google/
