@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/test")
-public class TestController {
+public class TestRestController {
     private final TestService testService;
 
     @PostMapping("/create")
@@ -37,6 +37,5 @@ public class TestController {
         return testService.passTest(user);
     }
 
-//
 
 }

@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
-@ToString
 @Entity
 @Getter
 @Setter

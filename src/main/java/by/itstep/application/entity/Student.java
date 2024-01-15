@@ -17,7 +17,6 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @OneToOne
     private Test test;
     @OneToOne

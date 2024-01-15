@@ -17,7 +17,7 @@ public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Boolean access = true; // for custom close access
+    private Boolean access = true;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Long duration;

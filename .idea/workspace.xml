@@ -4,25 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03f381cb-63ad-40d5-861e-95e13f494173" name="Changes" comment="first version project">
+    <list default="true" id="03f381cb-63ad-40d5-861e-95e13f494173" name="Changes" comment="back-end changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/security/ThymeleafConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/security/WebMvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/CheckAnswerFromTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/ApplicationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/ApplicationConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/security/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Assignment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Group.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/AssignmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/AssignmentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/GroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/GroupRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/TeacherRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/QuestionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/QuestionRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/type/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/type/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/login/LoginRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/registration/RegistrationRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/request/QuestionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/request/QuestionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/group/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/group/GroupService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/TestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/TeacherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +41,45 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PlatformForStudying" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PlatformForStudying" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="PlatformForStudying" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
         <option value="Enum" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
         <option value="Class" />
       </list>
     </option>
@@ -68,20 +108,23 @@
   &quot;keyToString&quot;: {
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;/Users/vitali/Downloads/PlatformForStudying/src/main/java/by/itstep/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.40344828&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;f848174e335f1310517cd8c99c4f8ae0&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -92,7 +135,57 @@
     ]
   }
 }</component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\java\PlatformForStudying\src\main\resources\static\css" />
+      <recent name="E:\java\PlatformForStudying\src\main\resources\templates" />
+      <recent name="E:\java\PlatformForStudying\src\main\resources\tempaltes" />
+      <recent name="E:\java\PlatformForStudying\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ApplicationRunner">
+    <configuration name="PlatformForStudying [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="classes" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PlatformForStudying [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="ApplicationRunner" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="PlatformForStudying.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="by.itstep.application.ApplicationRunner" />
@@ -100,6 +193,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.PlatformForStudying [classes]" />
+        <item itemvalue="Gradle.PlatformForStudying [clean]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -123,7 +222,17 @@
       <workItem from="1704436098995" duration="20189000" />
       <workItem from="1704477556816" duration="68000" />
       <workItem from="1704484096465" duration="9443000" />
-      <workItem from="1704528862203" duration="15656000" />
+      <workItem from="1704528862203" duration="16271000" />
+      <workItem from="1704569593653" duration="4621000" />
+      <workItem from="1704607415233" duration="11770000" />
+      <workItem from="1704619306265" duration="1277000" />
+      <workItem from="1704620593929" duration="13635000" />
+      <workItem from="1704656663178" duration="5443000" />
+      <workItem from="1704730503383" duration="7847000" />
+      <workItem from="1704979210016" duration="4459000" />
+      <workItem from="1704984316850" duration="8922000" />
+      <workItem from="1705002476570" duration="143000" />
+      <workItem from="1705048238281" duration="1614000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -140,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704456055812</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="added test validation">
+      <created>1704545922349</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704545922349</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +288,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="first version project" />
-    <option name="LAST_COMMIT_MESSAGE" value="first version project" />
+    <MESSAGE value="added test validation" />
+    <MESSAGE value="back-end changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="back-end changes" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

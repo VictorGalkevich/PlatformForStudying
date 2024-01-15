@@ -6,6 +6,7 @@ import by.itstep.application.repository.*;
 import by.itstep.application.util.ApiResponse;
 import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public class TeacherService {
 
         return ApiResponse.success("Test added for students in the group " + groupName);
     }
-
+   // @PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     public ApiResponse<String> sendResultTest(User user, Integer rating, Integer idAssigment) {
         var teacher = getEntity.getTeacherForUser(user);
         var assignment = getEntity.getAssignmentById(idAssigment);

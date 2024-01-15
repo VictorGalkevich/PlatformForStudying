@@ -11,6 +11,8 @@ public class RegistrationRestController {
 
     @PostMapping()
     public ApiResponse<String> register(@RequestBody RegistrationRequest request) {
+        System.out.println("username" + request.getUsername());
+        System.out.println("password" + request.getPassword());
         return registrationService.register(request);
     }
 

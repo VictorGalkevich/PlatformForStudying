@@ -19,23 +19,12 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private int number;
     private String text;
-    private String userAnswer;
     private String rightAnswer;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "possible_answers", joinColumns = @JoinColumn(name = "option_question_id"))
-    private List<PossibleAnswers> possibleAnswers;
+    private List<String> possibleAnswers;
     @Enumerated(EnumType.STRING)
     private QuestionType type;
 
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Embeddable
-    public static class PossibleAnswers {
-        private int number;
-        private String variant;
-    }
 }
