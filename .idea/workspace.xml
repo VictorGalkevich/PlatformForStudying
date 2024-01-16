@@ -4,31 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03f381cb-63ad-40d5-861e-95e13f494173" name="Changes" comment="back-end changes">
+    <list default="true" id="03f381cb-63ad-40d5-861e-95e13f494173" name="Changes" comment="added view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/ApplicationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/ApplicationConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/security/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/configuration/security/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Assignment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Group.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Profile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Question.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/entity/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/ProfileRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/repository/TestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/GroupRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/GroupRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/QuestionRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/QuestionRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TeacherRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/controller/TestRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/group/GroupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/group/GroupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/rest/request/QuestionRequest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/question/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/question/QuestionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/CheckAnswerFromTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/CheckAnswerFromTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/test/TestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/StudentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/TeacherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/itstep/application/util/GetEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/itstep/application/util/GetEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/questions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/questions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/questions.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/questions.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +228,7 @@
       <workItem from="1705214739732" duration="10778000" />
       <workItem from="1705261694084" duration="5354000" />
       <workItem from="1705342636466" duration="9802000" />
-      <workItem from="1705372766983" duration="3934000" />
+      <workItem from="1705372766983" duration="9004000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -271,7 +259,21 @@
       <option name="project" value="LOCAL" />
       <updated>1705050174385</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="back-end changes v2.0">
+      <created>1705376921488</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1705376921488</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added view">
+      <created>1705377104451</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1705377104451</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +307,9 @@
     <MESSAGE value="first version project" />
     <MESSAGE value="added test validation" />
     <MESSAGE value="back-end changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="back-end changes" />
+    <MESSAGE value="back-end changes v2.0" />
+    <MESSAGE value="added view" />
+    <option name="LAST_COMMIT_MESSAGE" value="added view" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

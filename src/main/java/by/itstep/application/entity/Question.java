@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,4 +28,16 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private QuestionType type;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Question question = (Question) o;
+        return Objects.equals(id, question.id) && Objects.equals(text, question.text) && Objects.equals(rightAnswer, question.rightAnswer) && Objects.equals(possibleAnswers, question.possibleAnswers) && type == question.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

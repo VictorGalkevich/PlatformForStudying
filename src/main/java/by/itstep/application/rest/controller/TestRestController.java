@@ -13,6 +13,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class TestRestController {
 
     @PostMapping("/create")
     public ApiResponse<String> createTest(@AuthenticationPrincipal User user,
-                                          @RequestBody List<Question> questions,
+                                          @RequestBody Set<Question> questions,
                                           @RequestParam String testName) {
         return testService.createTest(user, questions, testName);
     }
@@ -42,8 +43,8 @@ public class TestRestController {
         return ResponseEntity.ok(testDTOs);
     }
     @PostMapping("/pass")
-    public ApiResponse<String> passTest(@AuthenticationPrincipal User user){
-        return testService.passTest(user);
+    public ApiResponse<String> passTest(@AuthenticationPrincipal User user, @RequestBody List<String> userAnswers){
+        return testService.passTest(user, userAnswers);
     }
 
     @GetMapping("/allWithDetails")
