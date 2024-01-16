@@ -21,7 +21,8 @@ public class Teacher {
     private User user;
 
     @OneToMany
-    @JoinTable(name = "teacher_tests", joinColumns = @JoinColumn(name = "teacher_id"), inverseJoinColumns = @JoinColumn(name = "test_id"))
+    @JoinTable(name = "teacher_tests", joinColumns = @JoinColumn(name = "teacher_id"),
+            inverseJoinColumns = @JoinColumn(name = "test_id"))
     private List<Test> tests;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

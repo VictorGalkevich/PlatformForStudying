@@ -54,15 +54,16 @@ public class UserService implements UserDetailsService {
     public void singUpTeacherOrStudent(RegistrationRequest request) {
         User newUser = setAttributeForUSer(request);
         signUpUser(newUser);
-        newUser.setRole(Role.USER);
         if (request.getType() == UserType.STUDENT) {
             Student newStudent = new Student();
             newStudent.setUser(newUser);
             studentService.registerStudent(newStudent);
+            newUser.setRole(Role.USER);
         } else {
             Teacher newTeacher = new Teacher();
             newTeacher.setUser(newUser);
             teacherService.registerTeacher(newTeacher);
+            newUser.setRole(Role.MODERATOR);
         }
         userRepository.save(newUser);
     }
@@ -75,7 +76,6 @@ public class UserService implements UserDetailsService {
         newUser.setFirstname(request.getFirstname());
         newUser.setLastname(request.getLastname());
         newUser.setPassword(request.getPassword());
-        //newUser.setRole(request.getRole());
         return newUser;
     }
 

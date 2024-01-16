@@ -32,11 +32,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeHttpRequests(
                         urlConfig -> urlConfig
+                                .antMatchers("/login", "/registration").permitAll()
+                                .antMatchers("/api/v*/registration/**", "/api/v1/login", "/test/get/**").permitAll()
+                                .antMatchers("/group/create", "/test/create",
+                                        "/teacher/assign", "test/time", "/teacher/tests", "/students/all",
+                                        "/group/all", "/group/**/addStudent/**").hasAuthority(Role.ADMIN.getAuthority())
+                                 .antMatchers("/test/all", "questions/**").hasAuthority(Role.USER.getAuthority())
                                 .antMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                                .antMatchers("/login", "/registration", "/users/registration").permitAll()
-                                .antMatchers("/api/v*/registration/**", "/api/v1/login").permitAll()
-                                .antMatchers("/group/create", "/test/create").hasAuthority(Role.ADMIN.getAuthority())
-                                .antMatchers("/moderator/**").hasAuthority(Role.MODERATOR.getAuthority())
                                 .anyRequest().authenticated()
                 )
                 .logout(logout ->

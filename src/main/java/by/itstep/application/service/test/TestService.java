@@ -6,12 +6,12 @@ import by.itstep.application.entity.Test;
 import by.itstep.application.entity.User;
 import by.itstep.application.entity.type.StatusType;
 import by.itstep.application.repository.*;
+import by.itstep.application.rest.dto.TestDTO;
 import by.itstep.application.util.ApiResponse;
 import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +19,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,17 +30,19 @@ public class TestService {
     private final TeacherRepository teacherRepository;
     private final GetEntity getEntity;
 
-   // @PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     @Transactional
-    public ApiResponse<String> createTest(User user, final List<Question> questions) {
+    public ApiResponse<String> createTest(User user,
+                                          final List<Question> questions,
+                                          final String testName) {
         var teacher = getEntity.getTeacherForUser(user);
         try {
             if (questions.isEmpty()) {
                 return ApiResponse.error("Cannot create a test without questions");
             }
             Test test = new Test();
+            test.setTestName(testName);
             questionRepository.saveAll(questions);
-            test.setCreateBy(user.getFirstname() + " " + user.getLastname());
+            test.setCreatedBy(user.getFirstname() + " " + user.getLastname());
             test.setQuestions(questions);
             testRepository.save(test);
 
@@ -88,7 +91,6 @@ public class TestService {
         }
     }
 
-  //  @PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     public ApiResponse<String> setTimingsForTest(TestTimeRequest testRequest) {
         try {
             Optional<Test> optionalTest = testRepository.findByIdWithQuestions(testRequest.getIdTest());
@@ -114,16 +116,10 @@ public class TestService {
         try {
             var student = getEntity.getStudentForUser(user);
 
-            if (student.getTest() == null) {
-                return ApiResponse.error("this student didn't get test");
-            }
-
             Assignment assignment = new Assignment();
             assignment.setStatus(StatusType.SEND_FOR_CHECK);
-            assignment.setTest(student.getTest());
-            student.addAssigment(assignment);
-            student.setTest(null);
 
+            // ToDO logic for assignment
             studentRepository.save(student);
 
             // ToDo request for user answer
@@ -135,4 +131,16 @@ public class TestService {
         }
     }
 
+    @Transactional
+    public List<Test> getAllTestsWithDetails() {
+        return testRepository.findAllWithQuestions();
+    }
+
+    @Transactional(readOnly = true)
+    public List<TestDTO> getAllTestsForStudent(User user) {
+        List<Test> tests = getEntity.getStudentForUser(user).getTests();
+        return tests.stream()
+                .map(TestDTO::fromTest)
+                .collect(Collectors.toList());
+    }
 }

@@ -26,6 +26,11 @@ public class GetEntity {
         return groupRepository.findByName(groupName)
                 .orElseThrow(() -> new IllegalArgumentException("Group with name " + groupName + " not found"));
     }
+
+    public Group getGroupById(Integer idGroup) {
+        return groupRepository.findById(idGroup)
+                .orElseThrow(() -> new IllegalArgumentException("Group with id " + idGroup + " not found"));
+    }
     public Student getStudentById(Integer idStudent) {
         return studentRepository.findById(idStudent)
                 .orElseThrow(() -> new IllegalArgumentException("Student not found with ID: " + idStudent));

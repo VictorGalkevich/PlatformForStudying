@@ -2,13 +2,10 @@ package by.itstep.application.entity;
 
 import by.itstep.application.entity.type.StatusType;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.persistence.*;
 import java.util.List;
 
-@ToString
 @Entity
 @Table(name = "assignments")
 @Getter

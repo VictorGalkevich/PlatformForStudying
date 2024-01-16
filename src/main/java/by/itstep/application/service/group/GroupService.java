@@ -1,19 +1,25 @@
 package by.itstep.application.service.group;
 
-import by.itstep.application.entity.Group;
-import by.itstep.application.entity.Student;
-import by.itstep.application.entity.Teacher;
-import by.itstep.application.entity.User;
+import by.itstep.application.entity.*;
 import by.itstep.application.repository.GroupRepository;
 import by.itstep.application.repository.StudentRepository;
 import by.itstep.application.repository.TeacherRepository;
+import by.itstep.application.rest.response.GroupResponse;
+import by.itstep.application.rest.dto.GroupWithStudentsDto;
+import by.itstep.application.rest.dto.StudentDto;
 import by.itstep.application.util.ApiResponse;
 import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class GroupService {
@@ -22,7 +28,6 @@ public class GroupService {
     private final GetEntity getEntity;
     private final StudentRepository studentRepository;
 
-    //@PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
     public ApiResponse<String> createGroup(User user, String groupName) {
         ApiResponse<String> response;
         if (groupRepository.findByName(groupName).isPresent()) {
@@ -32,7 +37,8 @@ public class GroupService {
                 Group group = new Group();
                 group.setName(groupName);
 
-                Teacher teacher = teacherRepository.findByUser(user).orElseThrow(() -> new IllegalStateException("Teacher not found for user: " + user.getId()));
+                Teacher teacher = getEntity.getTeacherForUser(user);
+
                 teacher.addGroupForTeacher(group);
 
                 groupRepository.save(group);
@@ -46,30 +52,50 @@ public class GroupService {
 
         return response;
     }
-    //@PreAuthorize("hasAnyAuthority('ADMIN') or hasAnyAuthority('MODERATOR')")
-    public ApiResponse<String> addStudentForGroup(User user, Integer idStudent, String groupName) {
+
+    @Transactional
+    public ApiResponse<String> addStudentToGroup(Integer groupId, Integer studentId) {
+        Group group = groupRepository.findById(groupId)
+                .orElseThrow(() -> new EntityNotFoundException("Group not found with id: " + groupId));
+
+        Student student = getEntity.getStudentById(studentId);
+        if (group.getStudents().contains(student)) {
+            return ApiResponse.error("This student has already been added to the group");
+        }
+        group.addStudentsForGroup(student);
+
+        groupRepository.save(group);
+        studentRepository.save(student);
+        return ApiResponse.success("Successfully added the student to the group");
+    }
+
+    @Transactional(readOnly = true)
+    public ApiResponse<GroupWithStudentsDto> getGroupWithStudents(Integer groupId) {
+        Optional<Group> groupOptional = groupRepository.findById(groupId);
+        return groupOptional.map(group -> {
+            Set<StudentDto> studentDtos = group.getStudents().stream()
+                    .map(student -> new StudentDto(student.getId(), student.getUser().getFirstname(), student.getUser().getLastname()))
+                    .collect(Collectors.toSet());
+            GroupWithStudentsDto resultDto = new GroupWithStudentsDto(group, studentDtos);
+            return ApiResponse.success(resultDto);
+        }).orElseThrow();
+    }
+
+    public ApiResponse<List<GroupResponse>> getAllGroupResponses() {
         try {
-            Teacher teacher = getEntity.getTeacherForUser(user);
-            Group group = getEntity.getGroupByName(groupName);
-            List<Group> groups = teacherRepository.findGroupsByTeacherId(teacher.getId());
-            if (!groups.contains(group)) {
-                return ApiResponse.error("There are no such groups for this teacher.");
+            List<Group> groups = groupRepository.findAll();
+            List<GroupResponse> groupResponses = new ArrayList<>();
+
+            for (Group group : groups) {
+                GroupResponse groupResponse = new GroupResponse();
+                groupResponse.setId(group.getId());
+                groupResponse.setName(group.getName());
+                groupResponses.add(groupResponse);
             }
 
-            Student student = getEntity.getStudentById(idStudent);
-
-            if (group.getStudents().contains(student)) {
-                return ApiResponse.error("This student has already been added to the group");
-            }
-
-            group.addStudentsForGroup(student);
-            studentRepository.save(student);
-            groupRepository.save(group);
-            teacherRepository.save(teacher);
-
-            return ApiResponse.success("Successfully added the student to the group");
+            return ApiResponse.success(groupResponses);
         } catch (Exception e) {
-            return ApiResponse.error("An error occurred while adding the student to the group");
+            return ApiResponse.error(null);
         }
     }
 }
