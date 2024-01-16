@@ -1,0 +1,12 @@
+.question-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
