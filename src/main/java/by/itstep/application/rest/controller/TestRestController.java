@@ -1,7 +1,9 @@
 package by.itstep.application.rest.controller;
 
 import by.itstep.application.entity.Question;
+import by.itstep.application.entity.Test;
 import by.itstep.application.entity.User;
+import by.itstep.application.rest.dto.TestDTO;
 import by.itstep.application.service.test.TestService;
 import by.itstep.application.service.test.TestTimeRequest;
 import by.itstep.application.util.ApiResponse;
@@ -19,8 +21,10 @@ public class TestRestController {
     private final TestService testService;
 
     @PostMapping("/create")
-    public ApiResponse<String> createTest(@AuthenticationPrincipal User user, @RequestBody List<Question> questions) {
-        return testService.createTest(user, questions);
+    public ApiResponse<String> createTest(@AuthenticationPrincipal User user,
+                                          @RequestBody List<Question> questions,
+                                          @RequestParam String testName) {
+        return testService.createTest(user, questions, testName);
     }
 
     @PostMapping ("/time")
@@ -32,10 +36,18 @@ public class TestRestController {
         return testService.getTest(id);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<TestDTO>> getAllTestsForStudent(@AuthenticationPrincipal User user){
+        List<TestDTO> testDTOs = testService.getAllTestsForStudent(user);
+        return ResponseEntity.ok(testDTOs);
+    }
     @PostMapping("/pass")
     public ApiResponse<String> passTest(@AuthenticationPrincipal User user){
         return testService.passTest(user);
     }
 
-
+    @GetMapping("/allWithDetails")
+    public List<Test> getAllTestsWithDetails() {
+        return testService.getAllTestsWithDetails();
+    }
 }

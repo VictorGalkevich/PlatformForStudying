@@ -1,5 +1,6 @@
 package by.itstep.application.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@ToString
 @Getter
 @Setter
 @Table(name = "groups")
@@ -19,6 +19,8 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "groups_students",
             joinColumns = @JoinColumn(name = "group_id"),
