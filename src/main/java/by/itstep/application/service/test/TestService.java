@@ -19,6 +19,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,11 +29,12 @@ public class TestService {
     private final StudentRepository studentRepository;
     private final QuestionRepository questionRepository;
     private final TeacherRepository teacherRepository;
+    private final AssignmentRepository assignmentRepository;
     private final GetEntity getEntity;
 
     @Transactional
     public ApiResponse<String> createTest(User user,
-                                          final List<Question> questions,
+                                          final Set<Question> questions,
                                           final String testName) {
         var teacher = getEntity.getTeacherForUser(user);
         try {
@@ -112,18 +114,20 @@ public class TestService {
         }
     }
 
-    public ApiResponse<String> passTest(User user) {
+    public ApiResponse<String> passTest(User user, List<String> userAnswers) {
         try {
             var student = getEntity.getStudentForUser(user);
 
             Assignment assignment = new Assignment();
             assignment.setStatus(StatusType.SEND_FOR_CHECK);
 
-            // ToDO logic for assignment
-            studentRepository.save(student);
+            assignment.setUserAnswers(userAnswers);
+            var test = student.getActiveTest();
+            assignment.setTest(test);
 
-            // ToDo request for user answer
-            // ToDo assigment save() -- duplicate
+            // ToDo add check and se rating
+            studentRepository.save(student);
+            assignmentRepository.save(assignment);
 
             return ApiResponse.success("Test passed");
         } catch (Exception e) {

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -26,7 +27,7 @@ public class Test {
     private String createdBy;
     @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "tests_questions", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
-    private List<Question> questions;
+    private Set<Question> questions;
 
     public boolean isTestAccessible() {
         LocalDateTime now = LocalDateTime.now();

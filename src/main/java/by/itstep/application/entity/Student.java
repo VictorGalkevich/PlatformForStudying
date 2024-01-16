@@ -38,6 +38,13 @@ public class Student {
         assignments.add(assignment);
     }
 
+    public Test getActiveTest() {
+        return assignments.stream()
+                .filter(assignment -> assignment.getTest().isTestAccessible())
+                .map(Assignment::getTest)
+                .findFirst()
+                .orElse(null);
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

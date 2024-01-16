@@ -41,7 +41,6 @@ public class TeacherService {
             return ApiResponse.error("This test is already assigned to at least one student in the group");
         }
         students.forEach(student -> {
-            System.out.println(student);
             if (!student.getTests().contains(test)) {
                 student.addTest(test);
             }
