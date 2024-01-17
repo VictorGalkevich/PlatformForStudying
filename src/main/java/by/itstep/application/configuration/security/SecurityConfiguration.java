@@ -30,15 +30,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors().disable()
+                .csrf().disable()
                 .authorizeHttpRequests(
                         urlConfig -> urlConfig
                                 .antMatchers("/login", "/registration").permitAll()
                                 .antMatchers("/api/v*/registration/**", "/api/v1/login", "/test/get/**").permitAll()
+                                .antMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
                                 .antMatchers("/group/create", "/test/create",
                                         "/teacher/assign", "test/time", "/teacher/tests", "/students/all",
                                         "/group/all", "/group/**/addStudent/**").hasAuthority(Role.ADMIN.getAuthority())
-                                 .antMatchers("/test/all", "questions/**").hasAuthority(Role.USER.getAuthority())
-                                .antMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                                .antMatchers("/test/all", "questions/**").hasAuthority(Role.USER.getAuthority())
                                 .anyRequest().authenticated()
                 )
                 .logout(logout ->
@@ -47,10 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 .deleteCookies("JSESSIONID"))
                 .formLogin(login -> login
                         .loginPage("/login")
-                        .defaultSuccessUrl("/users"))
-                /*.oauth2Login(config -> config
-                        //.loginPage("/login")
-                        .defaultSuccessUrl("/users"))*/;
+                        .defaultSuccessUrl("/users"));
     }
 
     @Bean
