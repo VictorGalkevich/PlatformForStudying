@@ -29,7 +29,7 @@ public class Student {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "student_assignments", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "assigment_id"))
+    @JoinTable(name = "student_assignments", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "assignment_id"))
     private List<Assignment> assignments = new ArrayList<>();
     public void addTest(Test test) {
         tests.add(test);
