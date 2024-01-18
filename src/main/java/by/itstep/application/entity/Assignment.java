@@ -15,7 +15,7 @@ import java.util.List;
 public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @OneToOne
     private Test test;
     @ElementCollection(fetch = FetchType.LAZY)

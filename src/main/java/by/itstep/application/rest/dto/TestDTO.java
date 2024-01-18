@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class TestDTO {
-    private Integer id;
+    private Long id;
     private String testName;
     private Boolean access;
     private LocalDateTime startTime;

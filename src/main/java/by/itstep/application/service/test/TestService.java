@@ -58,7 +58,7 @@ public class TestService {
     }
 
     @Transactional(readOnly = true)
-    public ResponseEntity<?> getTest(Integer id) {
+    public ResponseEntity<?> getTest(Long id) {
         try {
             Test test = getEntity.getTestById(id);
 
