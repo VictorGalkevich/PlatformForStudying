@@ -33,7 +33,7 @@ public class TestRestController {
         return testService.setTimingsForTest(testRequest);
     }
     @GetMapping("/get/{id}")
-    public ResponseEntity<?> getTest(@PathVariable("id") Integer id){
+    public ResponseEntity<?> getTest(@PathVariable("id") Long id){
         return testService.getTest(id);
     }
 

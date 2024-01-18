@@ -14,7 +14,7 @@ public class GetEntity {
     private final StudentRepository studentRepository;
     private final AssignmentRepository assignmentRepository;
 
-    public Test getTestById(Integer idTest) {
+    public Test getTestById(Long idTest) {
         return testRepository.findById(idTest)
                 .orElseThrow(() -> new IllegalArgumentException("Test not found with ID: " + idTest));
     }
@@ -27,11 +27,11 @@ public class GetEntity {
                 .orElseThrow(() -> new IllegalArgumentException("Group with name " + groupName + " not found"));
     }
 
-    public Group getGroupById(Integer idGroup) {
+    public Group getGroupById(Long idGroup) {
         return groupRepository.findById(idGroup)
                 .orElseThrow(() -> new IllegalArgumentException("Group with id " + idGroup + " not found"));
     }
-    public Student getStudentById(Integer idStudent) {
+    public Student getStudentById(Long idStudent) {
         return studentRepository.findById(idStudent)
                 .orElseThrow(() -> new IllegalArgumentException("Student not found with ID: " + idStudent));
     }
@@ -39,7 +39,7 @@ public class GetEntity {
         return studentRepository.findByUser(user)
                 .orElseThrow(() -> new IllegalStateException("Teacher not found for user: " + user.getId()));
     }
-    public Assignment getAssignmentById(Integer idAssignment) {
+    public Assignment getAssignmentById(Long idAssignment) {
         return assignmentRepository.findById(idAssignment)
                 .orElseThrow(() -> new IllegalArgumentException("Assignment not found with ID: " + idAssignment));
     }

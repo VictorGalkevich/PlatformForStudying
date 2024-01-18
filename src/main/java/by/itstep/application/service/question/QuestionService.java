@@ -18,7 +18,7 @@ public class QuestionService {
     private final GetEntity getEntity;
 
     @Transactional(readOnly = true)
-    public Set<Question> getAllQuestionsFromTest(Integer testId) {
+    public Set<Question> getAllQuestionsFromTest(Long testId) {
         var test = getEntity.getTestById(testId);
         return test.getQuestions();
     }

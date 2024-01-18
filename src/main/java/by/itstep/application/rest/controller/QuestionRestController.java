@@ -14,7 +14,7 @@ public class QuestionRestController {
     private final QuestionService questionService;
 
     @GetMapping("/{testId}")
-    public Set<Question> getAllQuestionsFromTest(@PathVariable("testId") Integer testId) {
+    public Set<Question> getAllQuestionsFromTest(@PathVariable("testId") Long testId) {
         return questionService.getAllQuestionsFromTest(testId);
     }
 }

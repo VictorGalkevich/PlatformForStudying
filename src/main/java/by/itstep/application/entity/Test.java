@@ -18,7 +18,7 @@ import java.util.Set;
 public class Test {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String testName;
     private Boolean access = true;
     private LocalDateTime startTime;

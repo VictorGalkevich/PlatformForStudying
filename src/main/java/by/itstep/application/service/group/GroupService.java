@@ -54,7 +54,7 @@ public class GroupService {
     }
 
     @Transactional
-    public ApiResponse<String> addStudentToGroup(Integer groupId, Integer studentId) {
+    public ApiResponse<String> addStudentToGroup(Long groupId, Long studentId) {
         Group group = groupRepository.findById(groupId)
                 .orElseThrow(() -> new EntityNotFoundException("Group not found with id: " + groupId));
 
@@ -70,7 +70,7 @@ public class GroupService {
     }
 
     @Transactional(readOnly = true)
-    public ApiResponse<GroupWithStudentsDto> getGroupWithStudents(Integer groupId) {
+    public ApiResponse<GroupWithStudentsDto> getGroupWithStudents(Long groupId) {
         Optional<Group> groupOptional = groupRepository.findById(groupId);
         return groupOptional.map(group -> {
             Set<StudentDto> studentDtos = group.getStudents().stream()

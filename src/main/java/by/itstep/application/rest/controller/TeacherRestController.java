@@ -18,15 +18,15 @@ public class TeacherRestController {
 
     @PostMapping("/assign")
     public ApiResponse<String> assignTestForGroup(@AuthenticationPrincipal User user,
-                                                  @RequestParam("idTest") Integer idTest,
-                                                  @RequestParam("idGroup") Integer idGroup){
+                                                  @RequestParam("idTest") Long idTest,
+                                                  @RequestParam("idGroup") Long idGroup){
        return teacherService.assignTestForGroup(user, idTest, idGroup);
     }
 
     @PostMapping("/send")
     public ApiResponse<String> sendResultTest(@AuthenticationPrincipal User user,
                                               @RequestParam("rating")Integer rating,
-                                              @RequestParam("idAssigment") Integer idAssigment) {
+                                              @RequestParam("idAssigment") Long idAssigment) {
         return teacherService.sendResultTest(user, rating, idAssigment);
     }
 
