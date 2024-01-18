@@ -23,7 +23,7 @@ public class GroupRestController {
     }
 
     @PostMapping("/{groupId}/addStudent/{studentId}")
-    public ApiResponse<String> addStudentToGroup(@PathVariable Integer groupId, @PathVariable Integer studentId) {
+    public ApiResponse<String> addStudentToGroup(@PathVariable Long groupId, @PathVariable Long studentId) {
         return groupService.addStudentToGroup(groupId, studentId);
     }
     @GetMapping("/all")
@@ -31,7 +31,7 @@ public class GroupRestController {
         return groupService.getAllGroupResponses();
     }
     @GetMapping("/{groupId}")
-    public ApiResponse<GroupWithStudentsDto> getGroupWithStudents(@PathVariable Integer groupId) {
+    public ApiResponse<GroupWithStudentsDto> getGroupWithStudents(@PathVariable Long groupId) {
         return groupService.getGroupWithStudents(groupId);
     }
 }

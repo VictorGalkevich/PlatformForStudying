@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AssignmentRepository extends JpaRepository<Assignment, Integer> {
+public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
 }

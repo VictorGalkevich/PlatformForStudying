@@ -19,7 +19,7 @@ import java.util.Objects;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String text;
     private String rightAnswer;
     @ElementCollection(fetch = FetchType.EAGER)

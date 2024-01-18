@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class TestTimeRequest {
-    private Integer idTest;
+    private Long idTest;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
     private Long duration;

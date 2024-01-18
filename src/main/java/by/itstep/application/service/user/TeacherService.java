@@ -25,7 +25,7 @@ public class TeacherService {
     }
 
     @Transactional
-    public ApiResponse<String> assignTestForGroup(User user, Integer idTest, Integer idGroup) {
+    public ApiResponse<String> assignTestForGroup(User user, Long idTest, Long idGroup) {
         try {
              getEntity.getTeacherForUser(user);
         } catch (Exception e) {
@@ -49,7 +49,7 @@ public class TeacherService {
         return ApiResponse.success("Test added for students in the group " + group.getName());
     }
 
-    public ApiResponse<String> sendResultTest(User user, Integer rating, Integer idAssigment) {
+    public ApiResponse<String> sendResultTest(User user, Integer rating, Long idAssigment) {
         var teacher = getEntity.getTeacherForUser(user);
         var assignment = getEntity.getAssignmentById(idAssigment);
         if (!assignment.getTest().getCreatedBy().equals(teacher.getUser().getFirstname() + " " +

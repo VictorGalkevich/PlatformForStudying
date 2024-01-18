@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
 
     @JsonIgnore

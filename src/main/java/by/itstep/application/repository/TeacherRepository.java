@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface TeacherRepository extends JpaRepository<Teacher, Integer>{
+public interface TeacherRepository extends JpaRepository<Teacher, Long>{
     Optional<Teacher> findByUser(User user);
     @Query("SELECT DISTINCT g FROM Teacher t JOIN t.groups g WHERE t.id = :teacherId")
     List<Group> findGroupsByTeacherId(@Param("teacherId") Long teacherId);

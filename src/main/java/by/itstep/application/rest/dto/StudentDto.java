@@ -10,7 +10,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 public class StudentDto {
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     @Override
