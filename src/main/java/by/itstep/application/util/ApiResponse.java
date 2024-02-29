@@ -7,6 +7,13 @@ import lombok.NoArgsConstructor;
 public class ApiResponse<T> {
     private T result;
     private boolean error;
+    private String errorMessage;
+
+    public ApiResponse(T result, boolean error, String errorMessage) {
+        this.result = result;
+        this.error = error;
+        this.errorMessage = errorMessage;
+    }
     public ApiResponse(T result, boolean error) {
         this.result = result;
         this.error = error;
@@ -16,5 +23,8 @@ public class ApiResponse<T> {
     }
     public static <T> ApiResponse<T> error(T result) {
         return new ApiResponse<>(result, true);
+    }
+    public static <T> ApiResponse<T> error(String errorMessage) {
+        return new ApiResponse<>(null, true, errorMessage);
     }
 }

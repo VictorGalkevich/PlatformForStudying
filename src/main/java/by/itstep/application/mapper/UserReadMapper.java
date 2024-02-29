@@ -5,8 +5,6 @@ import by.itstep.application.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-
 @Component
 @RequiredArgsConstructor
 public class UserReadMapper implements Mapper<User, UserReadDto> {

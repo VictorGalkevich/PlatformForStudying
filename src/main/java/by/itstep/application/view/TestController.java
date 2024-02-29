@@ -11,7 +11,12 @@ public class TestController {
     }
 
     @GetMapping("/tests")
-    public String showTestsPage() {
+    public String showTestsPageForTeacher() {
         return "tests";
+    }
+
+    @GetMapping("/tests-students")
+    public String showPageWithTestsForStudents() {
+        return "tests-students";
     }
 }

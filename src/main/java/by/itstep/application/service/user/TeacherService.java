@@ -2,7 +2,7 @@ package by.itstep.application.service.user;
 
 import by.itstep.application.entity.*;
 import by.itstep.application.entity.type.StatusType;
-import by.itstep.application.repository.*;
+import by.itstep.application.rest.dto.StudentDto;
 import by.itstep.application.util.ApiResponse;
 import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +15,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TeacherService {
     private final GetEntity getEntity;
-    private final TestRepository testRepository;
-    private final TeacherRepository teacherRepository;
-    private final StudentRepository studentRepository;
-    private final AssignmentRepository assignmentRepository;
 
     public void registerTeacher(Teacher teacher) {
-        teacherRepository.save(teacher);
+        getEntity.saveTeacher(teacher);
     }
 
     @Transactional
@@ -45,7 +41,7 @@ public class TeacherService {
                 student.addTest(test);
             }
         });
-        studentRepository.saveAll(students);
+        getEntity.saveStudents(students);
         return ApiResponse.success("Test added for students in the group " + group.getName());
     }
 
@@ -61,13 +57,33 @@ public class TeacherService {
         }
         assignment.setStatus(StatusType.CHECKED);
         assignment.setRating(rating);
-        assignmentRepository.save(assignment);
+        getEntity.saveAssignment(assignment);
         return ApiResponse.success("result was send");
     }
 
     @Transactional(readOnly = true)
     public List<Test> getAllTests() {
-        return testRepository.findAll();
+        return getEntity.getAllTests();
+    }
+
+    @Transactional(readOnly = true)
+    public StudentDto findStudentByFirstAndLastName(String firstname, String lastname) {
+        //ToDo search Student by firstname and lastname
+      var student = getEntity.getStudentByFirstnameAndLastname(firstname, lastname);
+     return convertToStudentDto(student);
+    }
+    public void removeStudentFromGroup(Long studentId, Long groupId) {
+        var group = getEntity.getGroupById(groupId);
+        var student = getEntity.getStudentById(studentId);
+        group.getStudents().remove(student);
+        getEntity.saveGroup(group);
+    }
+    private StudentDto convertToStudentDto(Student student) {
+        StudentDto studentDto = new StudentDto();
+        studentDto.setId(student.getId());
+        studentDto.setFirstName(student.getUser().getFirstname());
+        studentDto.setLastName(student.getUser().getLastname());
+        return studentDto;
     }
 }
 

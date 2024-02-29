@@ -9,7 +9,12 @@
 </head>
 <body>
 <h1>Available Tests</h1>
-<ul id="testList"></ul>
+<button type="button" class = "back" onclick="backToProfile()">Back to Profile</button>
+<ul id="testList">
+    <li>
+        <button onclick="deleteTest(${test.id})">Delete Test</button>
+    </li>
+</ul>
 
 <div id="testContent" style="display:none;">
     <h2>Test Content</h2>

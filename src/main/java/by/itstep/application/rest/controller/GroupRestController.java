@@ -27,8 +27,8 @@ public class GroupRestController {
         return groupService.addStudentToGroup(groupId, studentId);
     }
     @GetMapping("/all")
-    public ApiResponse<List<GroupResponse>> getAllGroups() {
-        return groupService.getAllGroupResponses();
+    public ApiResponse<List<GroupResponse>> getAllGroups(@AuthenticationPrincipal User user) {
+        return groupService.getAllGroupResponses(user);
     }
     @GetMapping("/{groupId}")
     public ApiResponse<GroupWithStudentsDto> getGroupWithStudents(@PathVariable Long groupId) {

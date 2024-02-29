@@ -60,6 +60,19 @@ async function getTests() {
 
 }
 
+async function deleteTest(testId) {
+    const response = await fetch(`http://localhost:8081/test/delete/${testId}`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        getTests();
+    } else {
+        const errorMessage = await response.text();
+        console.error(`Failed to delete test: ${errorMessage}`);
+    }
+}
+
 async function showTestContent(test) {
     const testContent = document.getElementById('testContent');
     const testTimeFormContainer = document.getElementById(`testTimeFormContainer-${test.id}`);
@@ -90,10 +103,73 @@ async function showTestContent(test) {
             questionsList.appendChild(questionItem);
         });
 
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete Test';
+        deleteButton.addEventListener('click', function () {
+            const confirmation = confirm('Are you sure you want to delete this test?');
+            if (confirmation) {
+                deleteTest(test.id);
+            }
+        });
+
+        const listItem = document.createElement('li');
+
+        const testLink = document.createElement('a');
+        testLink.href = `javascript:void(0);`;
+        testLink.textContent = test.testName;
+        testLink.onclick = () => showTestContent(test);
+        listItem.appendChild(testLink);
+
+        const timeContainer = document.createElement('div');
+        timeContainer.textContent = `Start Time: ${test.startTime || 'Not set'},
+         End Time: ${test.endTime || 'Not set'},
+         Duration: ${test.duration ? test.duration : 'Not Set'}`;
+        listItem.appendChild(timeContainer);
+
+        const setTimeButton = document.createElement('button');
+        setTimeButton.textContent = 'Set Time';
+        setTimeButton.addEventListener('click', function () {
+            showTestTimeForm(test);
+        });
+        listItem.appendChild(setTimeButton);
+
+        listItem.appendChild(deleteButton);
+
+        const testTimeFormContainer = document.createElement('div');
+        testTimeFormContainer.style.display = 'none';
+        testTimeFormContainer.id = `testTimeFormContainer-${test.id}`;
+
+        listItem.appendChild(testTimeFormContainer);
+
+        const startTimeInput = document.createElement('input');
+        startTimeInput.type = 'datetime-local';
+        startTimeInput.id = `startTime-${test.id}`;
+        testTimeFormContainer.appendChild(startTimeInput);
+
+        const endTimeInput = document.createElement('input');
+        endTimeInput.type = 'datetime-local';
+        endTimeInput.id = `endTime-${test.id}`;
+        testTimeFormContainer.appendChild(endTimeInput);
+
+        const durationInput = document.createElement('input');
+        durationInput.type = 'number';
+        durationInput.id = `duration-${test.id}`;
+        testTimeFormContainer.appendChild(durationInput);
+
+        const setTimeButtonInsideForm = document.createElement('button');
+        setTimeButtonInsideForm.textContent = 'Set Time';
+        setTimeButtonInsideForm.addEventListener('click', function () {
+            setTestTime(test);
+        });
+        testTimeFormContainer.appendChild(setTimeButtonInsideForm);
+
+        testList.appendChild(listItem);
+
         testContent.style.display = 'block';
         testTimeFormContainer.style.display = 'none';
     }
 }
+
 function showGroupSelection(test) {
     const groupSelect = document.getElementById('groupSelect');
     groupSelect.style.display = 'block';
@@ -190,8 +266,8 @@ async function setTestTime(test) {
 
     const testTimeRequest = {
         idTest: test.id,
-        startTime: new Date(startTime).toISOString(),
-        endTime: new Date(endTime).toISOString(),
+        startTime: startTime,
+        endTime: endTime,
         duration: duration
     };
 
@@ -214,3 +290,7 @@ async function saveTestTime(testTimeRequest) {
 }
 
 window.onload = getTests;
+
+function backToProfile() {
+    window.location.href = '/profile';
+}

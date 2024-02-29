@@ -1,36 +1,25 @@
 package by.itstep.application.service.group;
 
 import by.itstep.application.entity.*;
-import by.itstep.application.repository.GroupRepository;
-import by.itstep.application.repository.StudentRepository;
-import by.itstep.application.repository.TeacherRepository;
 import by.itstep.application.rest.response.GroupResponse;
 import by.itstep.application.rest.dto.GroupWithStudentsDto;
-import by.itstep.application.rest.dto.StudentDto;
 import by.itstep.application.util.ApiResponse;
 import by.itstep.application.util.GetEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class GroupService {
-    private final GroupRepository groupRepository;
-    private final TeacherRepository teacherRepository;
     private final GetEntity getEntity;
-    private final StudentRepository studentRepository;
 
     public ApiResponse<String> createGroup(User user, String groupName) {
         ApiResponse<String> response;
-        if (groupRepository.findByName(groupName).isPresent()) {
+        if (getEntity.findGroupByName(groupName).isPresent()) {
             response = ApiResponse.error("This group name already exists. Please choose another name, for example: " + groupName + " + subject name");
         } else {
             try {
@@ -41,8 +30,8 @@ public class GroupService {
 
                 teacher.addGroupForTeacher(group);
 
-                groupRepository.save(group);
-                teacherRepository.save(teacher);
+                getEntity.saveGroup(group);
+                getEntity.saveTeacher(teacher);
 
                 response = ApiResponse.success("Successfully added group");
             } catch (Exception e) {
@@ -55,35 +44,28 @@ public class GroupService {
 
     @Transactional
     public ApiResponse<String> addStudentToGroup(Long groupId, Long studentId) {
-        Group group = groupRepository.findById(groupId)
-                .orElseThrow(() -> new EntityNotFoundException("Group not found with id: " + groupId));
+        var group = getEntity.getGroupById(groupId);
 
-        Student student = getEntity.getStudentById(studentId);
+        var student = getEntity.getStudentById(studentId);
         if (group.getStudents().contains(student)) {
             return ApiResponse.error("This student has already been added to the group");
         }
         group.addStudentsForGroup(student);
 
-        groupRepository.save(group);
-        studentRepository.save(student);
+        getEntity.saveGroup(group);
+        getEntity.saveStudent(student);
         return ApiResponse.success("Successfully added the student to the group");
     }
 
     @Transactional(readOnly = true)
     public ApiResponse<GroupWithStudentsDto> getGroupWithStudents(Long groupId) {
-        Optional<Group> groupOptional = groupRepository.findById(groupId);
-        return groupOptional.map(group -> {
-            Set<StudentDto> studentDtos = group.getStudents().stream()
-                    .map(student -> new StudentDto(student.getId(), student.getUser().getFirstname(), student.getUser().getLastname()))
-                    .collect(Collectors.toSet());
-            GroupWithStudentsDto resultDto = new GroupWithStudentsDto(group, studentDtos);
-            return ApiResponse.success(resultDto);
-        }).orElseThrow();
+      return getEntity.getGroupWithStudents(groupId);
     }
 
-    public ApiResponse<List<GroupResponse>> getAllGroupResponses() {
+    public ApiResponse<List<GroupResponse>> getAllGroupResponses(User user) {
         try {
-            List<Group> groups = groupRepository.findAll();
+            var teacher = getEntity.getTeacherForUser(user);
+            List<Group> groups = teacher.getGroups();
             List<GroupResponse> groupResponses = new ArrayList<>();
 
             for (Group group : groups) {

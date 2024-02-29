@@ -13,14 +13,10 @@
     <h1>User Profile</h1>
 </header>
 
-<section>
-    <div id="profile-user" class="tab-content" sec:authorize="hasAuthority('USER')">
-        <div id="student-section" class="test-section">
-
-        </div>
-    </div>
+<section sec:authorize="hasAuthority('USER')">
+    <button type="button" onclick="navigateToAllForStudents()">All Tests</button>
+    <p><button type="button" onclick="navigateToAssignments()">All Assignments</button></p>
 </section>
-
 <section>
     <div id="profile" class="tab-content" sec:authorize="hasAuthority('ADMIN')">
         <div id="user-section">

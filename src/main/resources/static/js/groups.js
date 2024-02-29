@@ -3,8 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const groupStudentsContainer = document.getElementById('groupStudents');
     const studentsContainer = document.getElementById('students');
     const showAllButton = document.getElementById('showAllButton');
+    const searchFirstNameInput = document.getElementById('searchFirstName');
+    const searchLastNameInput = document.getElementById('searchLastName');
+    const searchButton = document.getElementById('searchButton');
 
     let selectedGroupId = null;
+
     function toggleStudents(groupId) {
         if (selectedGroupId === groupId) {
             studentsContainer.innerHTML = '';
@@ -25,6 +29,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         data.result.students.forEach((student, index) => {
                             const studentItem = document.createElement('div');
                             studentItem.innerHTML = `<span>${index + 1}.</span>${student.firstName} ${student.lastName}`;
+
+                            const addButton = document.createElement('button');
+                            addButton.textContent = 'add in group';
+                            addButton.addEventListener('click', () => addStudentToGroup(selectedGroupId, student.id));
+                            studentItem.appendChild(addButton);
+
+                            const removeButton = document.createElement('button');
+                            removeButton.textContent = 'remove from group';
+                            removeButton.addEventListener('click', () => removeStudentFromGroup(selectedGroupId, student.id));
+                            studentItem.appendChild(removeButton);
+
                             studentsContainer.appendChild(studentItem);
                         });
                     } else {
@@ -37,6 +52,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(error => console.error('Error fetching students:', error));
         }
     }
+
+    function removeStudentFromGroup(groupId, studentId) {
+        fetch(`http://localhost:8081/teacher/remove?groupId=${groupId}&studentId=${studentId}`, {
+            method: 'DELETE',
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                } else {
+                    return { message: 'Success' };
+                }
+            })
+            .then(data => {
+                console.log('Student removed from group successfully:', data);
+                toggleStudents(groupId);
+            })
+            .catch(error => console.error('Error removing student from group:', error));
+    }
+
+    searchButton.addEventListener('click', () => {
+        const searchQuery = {
+            firstname: searchFirstNameInput.value.trim(),
+            lastname: searchLastNameInput.value.trim(),
+        };
+
+        if (searchQuery.firstname !== '' || searchQuery.lastname !== '') {
+            searchStudents(searchQuery);
+        }
+    });
+
 
     function addStudentToGroup(groupId, studentId) {
         fetch(`http://localhost:8081/group/${groupId}/addStudent/${studentId}`, {

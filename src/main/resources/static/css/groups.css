@@ -1,59 +1,70 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    margin: 20px;
 }
 
-h1 {
+h1, h2 {
     color: #333;
 }
 
-#groupList {
+ul {
     list-style-type: none;
     padding: 0;
-    margin: 20px 0;
 }
 
-#groupList li {
-    background-color: #ddd;
-    margin: 5px;
-    padding: 10px;
+#groupList {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+}
+
+li {
+    margin-bottom: 10px;
     cursor: pointer;
+    padding: 8px;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
 }
 
-#groupList li:hover {
-    background-color: #ccc;
+li:hover {
+    background-color: #e0e0e0;
 }
 
 #groupStudents {
-    display: none;
-    max-width: 400px;
-    margin: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
 }
 
 #students {
-    margin-top: 10px;
-}
-
-#students div {
-    margin: 5px 0;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-#students span {
+div[id^="searchContainer"] {
+    margin-top: 20px;
+}
+
+label {
     margin-right: 10px;
-    font-weight: bold;
+}
+
+input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
 }

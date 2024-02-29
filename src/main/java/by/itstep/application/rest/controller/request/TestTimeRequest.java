@@ -1,4 +1,4 @@
-package by.itstep.application.service.test;
+package by.itstep.application.rest.controller.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
