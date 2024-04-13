@@ -12,4 +12,4 @@ Project stack:
 * `Liquibase`
 * `MapStruct`
 
-Aoolication uses db `PostgreSQL`.
+Application uses db `PostgreSQL`.
